@@ -41,7 +41,7 @@
 
 <script>
 export default {
-  name: "#app",
+  name: "app",
   data() {
     return {
       ranks: ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"],
@@ -67,8 +67,8 @@ export default {
         let randomIndex = Math.floor(Math.random() * i);
         let temp = this.cards[i];
 
-        Vue.set(this.cards, i, this.cards[randomIndex]);
-        Vue.set(this.cards, randomIndex, temp);
+        this.$set(this.cards, i, this.cards[randomIndex]);
+        this.$set(this.cards, randomIndex, temp);
         this.isDeckShuffled = true;
       }
     },
