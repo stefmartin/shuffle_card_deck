@@ -29,10 +29,10 @@
     </div>
     <div class="deck">
       <transition-group :name="shuffleSpeed" tag="div" class="deck">
-        <div v-for="card in cards" :key="card.id" class="card">
-          <span class="card__suit card__suit--top" :class="suitColor[card.suit]">{{ card.suit }}</span>
+        <div v-for="card in cards" :key="card.id" class="card" :class="suitColor[card.suit]">
+          <span class="card__suit card__suit--top">{{ card.suit }}</span>
           <span class="card__number">{{ card.rank }}</span>
-          <span class="card__suit card__suit--bottom" :class="suitColor[card.suit]">{{ card.suit }}</span>
+          <span class="card__suit card__suit--bottom">{{ card.suit }}</span>
         </div>
       </transition-group>
     </div>
