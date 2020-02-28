@@ -4,6 +4,7 @@
       <img class="vue-logo" src="https://vuejs.org/images/logo.png">
       Card Shuffling
     </h1>
+    <div class="count-section" v-if="shuffleCount>0"># of Shuffles: {{ shuffleCount }}</div>
     <div class="speed-buttons">
       <button
         v-for="type in shuffleTypes"
@@ -55,7 +56,8 @@ export default {
       },
       shuffleSpeed: "shuffleMedium",
       shuffleTypes: ["Slow", "Medium", "Fast"],
-      isDeckShuffled: false
+      isDeckShuffled: false,
+      shuffleCount: 0
     };
   },
   created() {
@@ -63,7 +65,7 @@ export default {
   },
   methods: {
     shuffleDeck() {
-      for (let i = 0; i < this.cards.length - 1; i++) {
+      for (let i = 0; i < this.cards.length; i++) {
         let randomIndex = Math.floor(Math.random() * i);
         let temp = this.cards[i];
 
@@ -71,11 +73,11 @@ export default {
         this.$set(this.cards, randomIndex, temp);
         this.isDeckShuffled = true;
       }
+      this.shuffleCount++;
     },
     displayInitialDeck() {
       let id = 1;
       this.cards = [];
-
       for (let s = 0; s < this.suits.length; s++) {
         for (let r = 0; r < this.ranks.length; r++) {
           let card = {
@@ -87,6 +89,8 @@ export default {
           id++;
         }
       }
+      this.isDeckShuffled = false;
+      this.shuffleCount = 0;
     }
   }
 };
